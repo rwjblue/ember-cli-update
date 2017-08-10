@@ -21,7 +21,7 @@ init:
 install:
   - ps: Install-Product node $env:nodejs_version
   - npm config set spin false
-  - npm install -g npm
+  - ps: If ($env:nodejs_version -eq "4" -And $env:TEST_COMMAND -eq "test:command") {npm install -g npm@3}
   - npm install
 
 # Post-install test scripts.
